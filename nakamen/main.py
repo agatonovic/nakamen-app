@@ -1192,5 +1192,7 @@ def main(page: ft.Page) -> None:
     NakamenApp(page).mount()
 
 
-if __name__ == "__main__":
+if sys.platform == "emscripten":
+    ft.app(target=main, assets_dir=ASSETS_DIR)
+elif __name__ == "__main__":
     ft.app(target=main, assets_dir=ASSETS_DIR)
