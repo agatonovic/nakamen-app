@@ -8,7 +8,7 @@ from typing import Any, Optional
 
 try:
     from nakamen import taxonomy
-except ModuleNotFoundError:
+except (ModuleNotFoundError, ImportError):
     import taxonomy  # type: ignore
 
 APP_DIR = Path(__file__).resolve().parent

@@ -18,7 +18,7 @@ import flet_map as ftm
 
 try:
     from nakamen import db, i18n, taxonomy, theme
-except ModuleNotFoundError:
+except (ModuleNotFoundError, ImportError):
     import db  # type: ignore
     import i18n  # type: ignore
     import taxonomy  # type: ignore
