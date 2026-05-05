@@ -1046,7 +1046,7 @@ class NakamenApp:
     def _build_logo(self) -> ft.Control:
         """Wordmark + icon; light asset on light theme, dark asset on dark theme."""
         t = self.tokens
-        src = "/logo_dark.png" if self.dark else "/logo_light.png"
+        src = "logo_dark.png" if self.dark else "logo_light.png"
         # Cap width so the header Row can keep logo + controls on one line; align
         # left inside the cap (avoids the old CONTAIN centering gap).
         return ft.Container(
