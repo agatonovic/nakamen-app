@@ -1,2 +1,2 @@
 flet==0.28.3
-flet-map
+flet-map==0.1.0
