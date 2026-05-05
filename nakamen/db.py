@@ -6,7 +6,10 @@ import sqlite3
 from pathlib import Path
 from typing import Any, Optional
 
-from nakamen import taxonomy
+try:
+    from nakamen import taxonomy
+except ModuleNotFoundError:
+    import taxonomy  # type: ignore
 
 APP_DIR = Path(__file__).resolve().parent
 DATA_DIR = APP_DIR / "data"

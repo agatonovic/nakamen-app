@@ -16,7 +16,13 @@ if str(_ROOT) not in sys.path:
 import flet as ft
 import flet_map as ftm
 
-from nakamen import db, i18n, taxonomy, theme
+try:
+    from nakamen import db, i18n, taxonomy, theme
+except ModuleNotFoundError:
+    import db  # type: ignore
+    import i18n  # type: ignore
+    import taxonomy  # type: ignore
+    import theme  # type: ignore
 
 # Logos live next to this file: `nakamen/assets/`. That matches `flet run -a assets`,
 # which resolves `assets` relative to the script directory (not the repo root).
