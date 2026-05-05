@@ -24,7 +24,12 @@ self.initPyodide = async function () {
             await micropip.install(deps, pre=${pre})
   `);
     pyodide.pyimport(self.pythonModuleName);
-    await self.flet_js.start_connection(self.receiveCallback);
+    const startFn = self.flet_js.start_connection || self.flet_js.connect || self.flet_js.jsConnect;
+    if (!startFn) {
+        console.error("No start/connect function on flet_js", Object.keys(self.flet_js));
+        throw new Error("No start/connect function on flet_js");
+    }
+    await startFn(self.receiveCallback);
     self.postMessage("initialized");
 };
 
@@ -42,6 +47,11 @@ self.onmessage = async (event) => {
         await self.initPyodide();
     } else {
         // message
-        flet_js.send(event.data);
+        const sendFn = flet_js.send || flet_js.jsSend;
+        if (!sendFn) {
+            console.error("No send function on flet_js", Object.keys(flet_js));
+            return;
+        }
+        sendFn(event.data);
     }
 };
